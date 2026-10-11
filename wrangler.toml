@@ -1,0 +1,9 @@
+# Cloudflare Worker — serves the Samuel Robbins Brown site as static assets.
+# With this file present, `npx wrangler deploy` publishes index.html + images/
+# as a static website on Workers (no worker script needed).
+name = "samuel-robbins-brown"
+compatibility_date = "2026-10-10"
+
+[assets]
+directory = "./"
+not_found_handling = "single-page-application"
