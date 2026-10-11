@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>From Windsor to the World — Samuel Robbins Brown (1810–1880)</title>
+<style>
+  :root{
+    --parchment:#f4ecd8;
+    --parchment-deep:#eaddc2;
+    --ink:#2b2416;
+    --ink-soft:#4a4030;
+    --gold:#b8912f;
+    --gold-deep:#8f6f1f;
+    --card:#faf5e6;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{
+    font-family:Georgia,'Times New Roman','Nimbus Roman',serif;
+    background:var(--parchment);
+    background-image:radial-gradient(ellipse at 20% 10%, rgba(184,145,47,.06), transparent 50%),
+                     radial-gradient(ellipse at 85% 90%, rgba(120,90,30,.07), transparent 55%);
+    color:var(--ink);
+    line-height:1.75;
+    -webkit-text-size-adjust:100%;
+  }
+  .wrap{max-width:960px;margin:0 auto;padding:0 24px}
+  header.toprule{border-top:6px solid var(--gold)}
+  .eyebrow{
+    text-align:center;margin:56px 0 10px;font-size:.82rem;letter-spacing:.35em;
+    text-transform:uppercase;color:var(--gold-deep);
+  }
+  /* ---------- HERO ---------- */
+  .hero{display:flex;gap:48px;align-items:center;padding:18px 0 64px;flex-wrap:wrap}
+  .hero-photo{flex:0 1 340px;margin:0 auto}
+  .hero-text{flex:1 1 380px;min-width:280px}
+  .hero h1{
+    font-size:clamp(2.4rem,6vw,3.6rem);line-height:1.15;font-weight:400;
+    margin:0 0 14px;color:var(--ink);
+  }
+  .hero .sub{
+    font-size:clamp(1.05rem,2.6vw,1.3rem);font-style:italic;color:var(--ink-soft);
+    margin-bottom:22px;
+  }
+  .hero .summary{
+    border-left:3px solid var(--gold);padding-left:18px;
+    font-size:1rem;color:var(--ink-soft);
+  }
+  /* ---------- PORTRAITS ---------- */
+  .portrait{
+    filter:sepia(.38) contrast(1.03) brightness(.99);
+    border:1px solid var(--gold);
+    outline:6px solid var(--card);
+    outline-offset:-1px;
+    box-shadow:0 10px 30px rgba(60,45,15,.25);
+    display:block;width:100%;height:auto;cursor:zoom-in;background:#ddd;
+  }
+  .portrait-frame{position:relative}
+  .portrait-frame figcaption{
+    margin-top:14px;text-align:center;font-size:.85rem;color:var(--ink-soft);font-style:italic;
+  }
+  /* ---------- SECTIONS ---------- */
+  section.story{padding:52px 0;border-top:1px solid rgba(184,145,47,.45)}
+  section.story .kicker{
+    font-size:.78rem;letter-spacing:.3em;text-transform:uppercase;
+    color:var(--gold-deep);margin-bottom:10px;
+  }
+  section.story h2{font-size:clamp(1.6rem,4vw,2.2rem);font-weight:400;margin-bottom:18px}
+  section.story p{margin-bottom:1em;max-width:62ch}
+  section.story p:last-child{margin-bottom:0}
+  .cn{font-family:'Songti SC','SimSun',Georgia,serif}
+  /* ---------- GALLERY ---------- */
+  .gallery{background:var(--parchment-deep);border-top:1px solid rgba(184,145,47,.45);padding:60px 0 70px}
+  .gallery h2{text-align:center;font-size:clamp(1.6rem,4vw,2.2rem);font-weight:400;margin-bottom:8px}
+  .gallery .lede{text-align:center;font-style:italic;color:var(--ink-soft);margin-bottom:40px}
+  .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:28px}
+  .card{
+    background:var(--card);border:1px solid var(--gold);
+    box-shadow:0 8px 22px rgba(60,45,15,.18);
+    display:flex;flex-direction:column;
+  }
+  .card .ph{padding:14px 14px 0}
+  .card .portrait{outline-width:4px;box-shadow:0 4px 14px rgba(60,45,15,.2)}
+  .plate{padding:16px 16px 20px;text-align:center;flex:1;display:flex;flex-direction:column}
+  .plate h3{font-size:1.08rem;font-weight:400;margin-bottom:2px}
+  .plate .dates{font-size:.85rem;color:var(--gold-deep);letter-spacing:.06em;margin-bottom:10px}
+  .plate .oneliner{font-size:.92rem;font-style:italic;color:var(--ink-soft);margin-bottom:14px;flex:1}
+  .plate a.biolink{
+    display:inline-block;border:1px solid var(--gold-deep);color:var(--gold-deep);
+    text-decoration:none;font-size:.85rem;letter-spacing:.08em;text-transform:uppercase;
+    padding:8px 16px;transition:background .2s,color .2s;
+  }
+  .plate a.biolink:hover{background:var(--gold-deep);color:#fff}
+  /* ---------- CLOSING ---------- */
+  .closing{padding:64px 0 30px;text-align:center}
+  .closing h2{font-size:clamp(1.6rem,4vw,2.2rem);font-weight:400;margin-bottom:18px}
+  .closing p{max-width:60ch;margin:0 auto 1em;color:var(--ink-soft)}
+  .closing .invite{font-size:1.15rem;color:var(--ink);font-style:italic;margin-top:24px}
+  .goldrule{width:120px;height:2px;background:var(--gold);margin:34px auto}
+  footer{
+    border-top:1px solid rgba(184,145,47,.45);
+    padding:22px 0 40px;text-align:center;
+    font-size:.78rem;color:var(--ink-soft);
+  }
+  /* ---------- LIGHTBOX ---------- */
+  .lightbox{
+    display:none;position:fixed;inset:0;z-index:50;
+    background:rgba(30,24,12,.92);cursor:zoom-out;
+    align-items:center;justify-content:center;padding:4vmin;
+  }
+  .lightbox.open{display:flex}
+  .lightbox img{
+    max-width:92vw;max-height:92vh;width:auto;height:auto;
+    border:2px solid var(--gold);box-shadow:0 20px 60px rgba(0,0,0,.6);
+    filter:sepia(.25) contrast(1.02);
+  }
+  .lightbox .cap{
+    position:absolute;bottom:3vh;left:0;right:0;text-align:center;
+    color:#e9dcc0;font-style:italic;font-size:.95rem;
+  }
+  @media (max-width:640px){
+    .hero{gap:28px;padding-bottom:44px}
+    section.story{padding:40px 0}
+  }
+</style>
+</head>
+<body>
+<header class="toprule"></header>
+
+<div class="wrap">
+  <p class="eyebrow">A Connecticut Story · 1810–1880</p>
+
+  <!-- 1. HERO -->
+  <div class="hero">
+    <figure class="hero-photo portrait-frame">
+      <img class="portrait" src="images/samuel-robbins-brown.jpg"
+           alt="Portrait of the Rev. Samuel Robbins Brown" data-cap="The Rev. Samuel Robbins Brown (1810–1880)">
+      <figcaption>The Rev. Samuel Robbins Brown</figcaption>
+    </figure>
+    <div class="hero-text">
+      <h1>From Windsor to the World</h1>
+      <p class="sub">A Connecticut schoolmaster whose life changed China and Japan.</p>
+      <p class="summary">Samuel Robbins Brown (1810–1880) — born in East Windsor, Connecticut;
+        principal of China&rsquo;s first Protestant school; the man who brought the first
+        Chinese students to America; translator of the Japanese New Testament.</p>
+    </div>
+  </div>
+
+  <!-- 2. THE MAN FROM WINDSOR -->
+  <section class="story">
+    <p class="kicker">I · Roots</p>
+    <h2>The Man from Windsor</h2>
+    <p>Born in East Windsor, Connecticut, on June 16, 1810, Samuel Robbins Brown graduated
+      from Yale College in 1832 and belonged to the first graduating class of Union
+      Theological Seminary. Before sailing for China he taught for four years at the
+      New York Institution for the Deaf and Dumb (1834–1838) — a schoolmaster by training,
+      and a schoolmaster he would remain all his life.</p>
+  </section>
+
+  <!-- 3. MORRISON SCHOOL -->
+  <section class="story">
+    <p class="kicker">II · China</p>
+    <h2>Principal of the Morrison School</h2>
+    <p>In 1838 Brown sailed for Guangzhou under the Morrison Education Society and opened
+      the first Protestant school in the Chinese Empire — at Macao in 1839, moved to
+      Hong Kong in 1842. Its annual reports, published in the <em>Chinese Repository</em>
+      from 1840 to 1846, record one of the earliest experiments in modern education on
+      Chinese soil.</p>
+  </section>
+
+  <!-- 4. THREE BOYS -->
+  <section class="story">
+    <p class="kicker">III · The Crossing</p>
+    <h2>Three Boys Who Crossed the Ocean</h2>
+    <p>In 1847 his wife&rsquo;s failing health forced the family home. Brown did not return
+      alone: three of his pupils — Yung Wing (<span class="cn">容闳</span>), Wong Shing
+      (<span class="cn">黄胜</span>), and Wong Foon (<span class="cn">黄宽</span>) — crossed
+      the Pacific with him. He enrolled them at Monson Academy in Massachusetts.</p>
+    <p>In 1854 Yung Wing graduated from Yale College — the first Chinese student to
+      graduate from an American university. Those three boys were the beginning of the
+      Chinese educational mission to America.</p>
+  </section>
+
+  <!-- 5. ELMIRA -->
+  <section class="story">
+    <p class="kicker">IV · Upstate New York</p>
+    <h2>A College for Women</h2>
+    <p>Brown labored for the founding of a college for women — first at Auburn, then at
+      Elmira, New York. That school is Elmira College today.</p>
+  </section>
+
+  <!-- 6. JAPAN -->
+  <section class="story">
+    <p class="kicker">V · Japan</p>
+    <h2>Twenty Years in Japan</h2>
+    <p>After the Harris Treaty of 1858 opened Japan, Brown sailed for Yokohama under the
+      Dutch Reformed mission. For twenty years (1859–1879) he ran a school whose hundreds
+      of pupils became leaders of modern Japan, translated the New Testament into Japanese,
+      and helped found the Asiatic Society of Japan. Several of his English pupils were
+      among the first Japanese Christians baptized, at Yokohama in 1872.</p>
+  </section>
+</div>
+
+<!-- 7. GALLERY -->
+<div class="gallery">
+  <div class="wrap">
+    <h2>Four New England Witnesses to China</h2>
+    <p class="lede">Sons and daughters of New England who carried the gospel to China.</p>
+    <div class="cards">
+
+      <div class="card">
+        <div class="ph">
+          <img class="portrait" src="images/samuel-robbins-brown.jpg"
+               alt="Portrait of Samuel Robbins Brown" data-cap="Samuel Robbins Brown (1810–1880)">
+        </div>
+        <div class="plate">
+          <h3>Samuel Robbins Brown</h3>
+          <p class="dates">East Windsor, Connecticut · 1810–1880</p>
+          <p class="oneliner">China&rsquo;s first Protestant schoolmaster.</p>
+          <a class="biolink" href="https://archive.org/details/amakerneworient00grifgoog">Read the original biography</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="ph">
+          <img class="portrait" src="images/elijah-bridgman.jpg"
+               alt="Portrait of Elijah Coleman Bridgman" data-cap="Elijah Coleman Bridgman (1801–1861)">
+        </div>
+        <div class="plate">
+          <h3>Elijah Coleman Bridgman <span class="cn">裨治文</span></h3>
+          <p class="dates">Belchertown, Massachusetts · 1801–1861</p>
+          <p class="oneliner">First American Protestant missionary to China; founder of the <em>Chinese Repository</em>.</p>
+          <a class="biolink" href="https://archive.org/details/pioneerofamerica00brid">Read the original biography</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="ph">
+          <img class="portrait" src="images/eliza-bridgman.jpg"
+               alt="Portrait of Eliza Jane Gillett Bridgman" data-cap="Eliza Jane Gillett Bridgman (1805–1871)">
+        </div>
+        <div class="plate">
+          <h3>Eliza Jane Gillett Bridgman <span class="cn">裨爱利</span></h3>
+          <p class="dates">Derby, Connecticut · 1805–1871</p>
+          <p class="oneliner">Founded Shanghai&rsquo;s first Protestant girls&rsquo; school; the Bridgman Academy in Beijing.</p>
+          <a class="biolink" href="https://archive.org/details/daughtersofchina00bridrich">Read the original biography</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="ph">
+          <img class="portrait" src="images/peter-parker.jpg"
+               alt="Portrait of Peter Parker" data-cap="Peter Parker (1804–1888)">
+        </div>
+        <div class="plate">
+          <h3>Peter Parker <span class="cn">伯駕</span></h3>
+          <p class="dates">Framingham, Massachusetts · 1804–1888</p>
+          <p class="oneliner">China&rsquo;s first medical missionary; brought ether anesthesia to China.</p>
+          <a class="biolink" href="https://archive.org/details/39002011128577.med.yale.edu/39002011128577.med.yale.edu">Read the original biography</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- 8. CLOSING -->
+<div class="wrap">
+  <div class="closing">
+    <div class="goldrule"></div>
+    <h2>The Calling Continues</h2>
+    <p>Nearly two centuries later, the Golden Lampstand Association (USA), rooted in
+      Connecticut, carries the same calling — forming leaders, serving the Chinese
+      diaspora, and witnessing to Christ.</p>
+    <p class="invite">Visit our booth — we&rsquo;d love to meet you.</p>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap">
+    Portraits: public domain archival prints. Biographical sources linked to first-edition scans.
+  </div>
+</footer>
+
+<!-- 9. LIGHTBOX -->
+<div class="lightbox" id="lightbox" role="dialog" aria-label="Portrait viewer">
+  <img id="lightbox-img" src="" alt="">
+  <p class="cap" id="lightbox-cap"></p>
+</div>
+
+<script>
+(function(){
+  var lb = document.getElementById('lightbox');
+  var img = document.getElementById('lightbox-img');
+  var cap = document.getElementById('lightbox-cap');
+  document.querySelectorAll('img.portrait').forEach(function(p){
+    p.addEventListener('click', function(){
+      img.src = p.src;
+      img.alt = p.alt;
+      cap.textContent = p.getAttribute('data-cap') || p.alt;
+      lb.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    });
+  });
+  lb.addEventListener('click', function(){
+    lb.classList.remove('open');
+    document.body.style.overflow = '';
+  });
+  document.addEventListener('keydown', function(e){
+    if(e.key === 'Escape' && lb.classList.contains('open')){ lb.click(); }
+  });
+})();
+</script>
+</body>
+</html>
